@@ -10,11 +10,11 @@
 ### Memory Usage ###
  Intel Hex-file ranges:
   0h - 3h		(dist/default/production\XC8-18F4550_Lab01_Basic_IO.X.production.hex)
-  7F72h - 7FFFh		(dist/default/production\XC8-18F4550_Lab01_Basic_IO.X.production.hex)
+  7F78h - 7FFFh		(dist/default/production\XC8-18F4550_Lab01_Basic_IO.X.production.hex)
   200000h - 200007h		(dist/default/production\XC8-18F4550_Lab01_Basic_IO.X.production.hex)
   300000h - 30000Dh		(dist/default/production\XC8-18F4550_Lab01_Basic_IO.X.production.hex)
  Unused ranges:
-  4h - 7F71h
+  4h - 7F77h
   8000h - 1FFFFFh
   200008h - 2FFFFFh
 
@@ -27,7 +27,7 @@
 ----------------------------------------------------------
 00000000 | H1 H1 H1 H1 -- -- -- -- -- -- -- -- -- -- -- --
 ----------------------------------------------------------
-00007F70 | -- -- H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00007F70 | -- -- -- -- -- -- -- -- H1 H1 H1 H1 H1 H1 H1 H1
 00007F80 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00007F90 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00007FA0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
