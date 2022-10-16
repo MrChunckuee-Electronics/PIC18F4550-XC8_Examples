@@ -1,0 +1,192 @@
+[p GLOBOPT AUTOSTATIC IEEE_FLT IEEE_DBL LFSROK EMI_WORD ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F4550 ]
+[d frameptr 4065 ]
+"11 C:\Users\mrchu\Documentos\GitHub\PIC18F4550-XC8_Examples\XC8-18F4550_Lab02_ADC_Delay_Toggle_LED.X\adc.c
+[v _ADC_Initialize ADC_Initialize `(v  1 e 1 0 ]
+"22
+[v _ADC_Start ADC_Start `(v  1 e 1 0 ]
+"30
+[v _ADC_GetSingleConversion ADC_GetSingleConversion `(us  1 e 2 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\fleq.c
+[v ___fleq __fleq `(b  1 e 0 0 ]
+"62 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\float.c
+[v ___ftpack __ftpack `(f  1 e 4 0 ]
+"86 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 4 0 ]
+"54 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 4 0 ]
+"62 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 4 0 ]
+"19 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\ftsub.c
+[v ___ftsub __ftsub `(f  1 e 4 0 ]
+"10 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"245
+[v ___flsub __flsub `(d  1 e 4 0 ]
+"11 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+"8 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+"15 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"91 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\Umul64.c
+[v ___omul __omul `(uo  1 e 8 0 ]
+"23 C:\Users\mrchu\Documentos\GitHub\PIC18F4550-XC8_Examples\XC8-18F4550_Lab02_ADC_Delay_Toggle_LED.X\main.c
+[v _main main `(v  1 e 1 0 ]
+"16 C:\Users\mrchu\Documentos\GitHub\PIC18F4550-XC8_Examples\XC8-18F4550_Lab02_ADC_Delay_Toggle_LED.X\mcu.c
+[v _MCU_Initialize MCU_Initialize `(v  1 e 1 0 ]
+"39
+[v _Delay_ms Delay_ms `(v  1 e 1 0 ]
+"46
+[v _IO_Task IO_Task `(v  1 e 1 0 ]
+"2315 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4550.h
+[v _PORTA PORTA `VEuc  1 e 1 @3968 ]
+"2827
+[v _PORTE PORTE `VEuc  1 e 1 @3972 ]
+"2974
+[v _LATA LATA `VEuc  1 e 1 @3977 ]
+"3376
+[v _LATE LATE `VEuc  1 e 1 @3981 ]
+[s S60 . 1 `uc 1 LATE0 1 0 :1:0 
+`uc 1 LATE1 1 0 :1:1 
+`uc 1 LATE2 1 0 :1:2 
+]
+"3393
+[s S64 . 1 `uc 1 LE0 1 0 :1:0 
+`uc 1 LE1 1 0 :1:1 
+`uc 1 LE2 1 0 :1:2 
+]
+[u S68 . 1 `S60 1 . 1 0 `S64 1 . 1 0 ]
+[v _LATEbits LATEbits `VES68  1 e 1 @3981 ]
+"3428
+[v _TRISA TRISA `VEuc  1 e 1 @3986 ]
+"4224
+[v _TRISE TRISE `VEuc  1 e 1 @3990 ]
+[s S127 . 1 `uc 1 ADCS 1 0 :3:0 
+`uc 1 ACQT 1 0 :3:3 
+`uc 1 . 1 0 :1:6 
+`uc 1 ADFM 1 0 :1:7 
+]
+"6532
+[s S132 . 1 `uc 1 ADCS0 1 0 :1:0 
+`uc 1 ADCS1 1 0 :1:1 
+`uc 1 ADCS2 1 0 :1:2 
+`uc 1 ACQT0 1 0 :1:3 
+`uc 1 ACQT1 1 0 :1:4 
+`uc 1 ACQT2 1 0 :1:5 
+]
+[u S139 . 1 `S127 1 . 1 0 `S132 1 . 1 0 ]
+[v _ADCON2bits ADCON2bits `VES139  1 e 1 @4032 ]
+[s S92 . 1 `uc 1 PCFG 1 0 :4:0 
+`uc 1 VCFG 1 0 :2:4 
+]
+"6607
+[s S95 . 1 `uc 1 PCFG0 1 0 :1:0 
+`uc 1 PCFG1 1 0 :1:1 
+`uc 1 PCFG2 1 0 :1:2 
+`uc 1 PCFG3 1 0 :1:3 
+`uc 1 VCFG0 1 0 :1:4 
+`uc 1 VCFG1 1 0 :1:5 
+]
+[s S102 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 CHSN3 1 0 :1:3 
+`uc 1 VCFG01 1 0 :1:4 
+`uc 1 VCFG11 1 0 :1:5 
+]
+[u S107 . 1 `S92 1 . 1 0 `S95 1 . 1 0 `S102 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES107  1 e 1 @4033 ]
+[s S159 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO_NOT_DONE 1 0 :1:1 
+]
+"6711
+[s S162 . 1 `uc 1 ADON 1 0 :1:0 
+`uc 1 GO_nDONE 1 0 :1:1 
+`uc 1 CHS 1 0 :4:2 
+]
+[s S166 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO_DONE 1 0 :1:1 
+`uc 1 CHS0 1 0 :1:2 
+`uc 1 CHS1 1 0 :1:3 
+`uc 1 CHS2 1 0 :1:4 
+`uc 1 CHS3 1 0 :1:5 
+]
+[s S173 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 DONE 1 0 :1:1 
+]
+[s S176 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO 1 0 :1:1 
+]
+[s S179 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 NOT_DONE 1 0 :1:1 
+]
+[s S182 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 nDONE 1 0 :1:1 
+]
+[s S185 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GODONE 1 0 :1:1 
+]
+[u S188 . 1 `S159 1 . 1 0 `S162 1 . 1 0 `S166 1 . 1 0 `S173 1 . 1 0 `S176 1 . 1 0 `S179 1 . 1 0 `S182 1 . 1 0 `S185 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES188  1 e 1 @4034 ]
+"6793
+[v _ADRESL ADRESL `VEuc  1 e 1 @4035 ]
+"6800
+[v _ADRESH ADRESH `VEuc  1 e 1 @4036 ]
+"7987
+[v _OSCCON OSCCON `VEuc  1 e 1 @4051 ]
+"12 C:\Users\mrchu\Documentos\GitHub\PIC18F4550-XC8_Examples\XC8-18F4550_Lab02_ADC_Delay_Toggle_LED.X\mcu.c
+[v _BUTON_Status BUTON_Status `a  1 e 1 0 ]
+"13
+[v _BUTON_Ticks BUTON_Ticks `uc  1 e 1 0 ]
+"14
+[v _adc_Result adc_Result `us  1 e 2 0 ]
+"23 C:\Users\mrchu\Documentos\GitHub\PIC18F4550-XC8_Examples\XC8-18F4550_Lab02_ADC_Delay_Toggle_LED.X\main.c
+[v _main main `(v  1 e 1 0 ]
+{
+"29
+} 0
+"16 C:\Users\mrchu\Documentos\GitHub\PIC18F4550-XC8_Examples\XC8-18F4550_Lab02_ADC_Delay_Toggle_LED.X\mcu.c
+[v _MCU_Initialize MCU_Initialize `(v  1 e 1 0 ]
+{
+"37
+} 0
+"11 C:\Users\mrchu\Documentos\GitHub\PIC18F4550-XC8_Examples\XC8-18F4550_Lab02_ADC_Delay_Toggle_LED.X\adc.c
+[v _ADC_Initialize ADC_Initialize `(v  1 e 1 0 ]
+{
+[v ADC_Initialize@PortConfig PortConfig `uc  1 a 1 wreg ]
+[v ADC_Initialize@PortConfig PortConfig `uc  1 a 1 wreg ]
+"13
+[v ADC_Initialize@PortConfig PortConfig `uc  1 a 1 0 ]
+"20
+} 0
+"22
+[v _ADC_Start ADC_Start `(v  1 e 1 0 ]
+{
+"24
+} 0
+"46 C:\Users\mrchu\Documentos\GitHub\PIC18F4550-XC8_Examples\XC8-18F4550_Lab02_ADC_Delay_Toggle_LED.X\mcu.c
+[v _IO_Task IO_Task `(v  1 e 1 0 ]
+{
+"61
+} 0
+"39
+[v _Delay_ms Delay_ms `(v  1 e 1 0 ]
+{
+"40
+[v Delay_ms@j j `ui  1 a 2 3 ]
+"39
+[v Delay_ms@miliseconds miliseconds `us  1 p 2 0 ]
+"44
+} 0
+"30 C:\Users\mrchu\Documentos\GitHub\PIC18F4550-XC8_Examples\XC8-18F4550_Lab02_ADC_Delay_Toggle_LED.X\adc.c
+[v _ADC_GetSingleConversion ADC_GetSingleConversion `(us  1 e 2 0 ]
+{
+[v ADC_GetSingleConversion@Channel Channel `uc  1 a 1 wreg ]
+"31
+[v ADC_GetSingleConversion@RESULT_ADC RESULT_ADC `us  1 a 2 5 ]
+"30
+[v ADC_GetSingleConversion@Channel Channel `uc  1 a 1 wreg ]
+[v ADC_GetSingleConversion@Channel Channel `uc  1 a 1 4 ]
+"37
+} 0

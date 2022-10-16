@@ -1,0 +1,1091 @@
+
+
+Microchip MPLAB XC8 Assembler V2.36 build 20220127204148 
+                                                                                               Sat Oct 15 18:46:59 2022
+
+Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1 
+     1                           	processor	18F4550
+     2                           	fnconf	rparam,??,?,0
+     3                           	pagewidth 120
+     4                           	opt	flic
+     5                           	psect	nvCOMRAM,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+     6                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     7                           	psect	bssCOMRAM,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+     8                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+     9                           	psect	text0,global,reloc=2,class=CODE,delta=1
+    10                           	psect	text1,global,reloc=2,class=CODE,delta=1
+    11                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    12                           	psect	text3,global,reloc=2,class=CODE,delta=1
+    13                           	psect	text4,global,reloc=2,class=CODE,delta=1
+    14                           	psect	text5,global,reloc=2,class=CODE,delta=1
+    15                           	psect	text6,global,reloc=2,class=CODE,delta=1
+    16                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1,noexec
+    17                           	psect	rparam,global,class=COMRAM,space=1,delta=1,noexec
+    18                           	psect	idloc,global,abs,ovrld,class=IDLOC,space=5,delta=1,noexec
+    19                           	psect	config,global,abs,ovrld,class=CONFIG,space=4,delta=1,noexec
+    20  0000                     
+    21                           ; Version 2.40
+    22                           ; Generated 17/11/2021 GMT
+    23                           ; 
+    24                           ; Copyright © 2021, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    25                           ; All rights reserved.
+    26                           ; 
+    27                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    28                           ; 
+    29                           ; Redistribution and use in source and binary forms, with or without modification, are
+    30                           ; permitted provided that the following conditions are met:
+    31                           ; 
+    32                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    33                           ;        conditions and the following disclaimer.
+    34                           ; 
+    35                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    36                           ;        of conditions and the following disclaimer in the documentation and/or other
+    37                           ;        materials provided with the distribution. Publication is not required when
+    38                           ;        this file is used in an embedded application.
+    39                           ; 
+    40                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    41                           ;        software without specific prior written permission.
+    42                           ; 
+    43                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    44                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    45                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    46                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    47                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    48                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    49                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    50                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    51                           ; 
+    52                           ; 
+    53                           ; Code-generator required, PIC18F4550 Definitions
+    54                           ; 
+    55                           ; SFR Addresses
+    56  0000                     _ADRESL	set	4035
+    57  0000                     _ADRESH	set	4036
+    58  0000                     _ADCON0bits	set	4034
+    59                           
+    60                           	psect	nvCOMRAM
+    61  000009                     __pnvCOMRAM:
+    62                           	callstack 0
+    63  000009                     _adc_Result:
+    64                           	callstack 0
+    65  000009                     	ds	2
+    66  0000                     _LATEbits	set	3981
+    67  0000                     _PORTA	set	3968
+    68  0000                     _LATA	set	3977
+    69  0000                     _TRISA	set	3986
+    70  0000                     _TRISE	set	3990
+    71  0000                     _ADCON2bits	set	4032
+    72  0000                     _ADCON1bits	set	4033
+    73  0000                     _OSCCON	set	4051
+    74  0000                     _LATE	set	3981
+    75  0000                     _PORTE	set	3972
+    76                           
+    77                           ; #config settings
+    78                           
+    79                           	psect	cinit
+    80  007EA6                     __pcinit:
+    81                           	callstack 0
+    82  007EA6                     start_initialization:
+    83                           	callstack 0
+    84  007EA6                     __initialization:
+    85                           	callstack 0
+    86                           
+    87                           ; Clear objects allocated to COMRAM (2 bytes)
+    88  007EA6  6A0C               	clrf	(__pbssCOMRAM+1)& (0+255),c
+    89  007EA8  6A0B               	clrf	__pbssCOMRAM& (0+255),c
+    90  007EAA                     end_of_initialization:
+    91                           	callstack 0
+    92  007EAA                     __end_of__initialization:
+    93                           	callstack 0
+    94  007EAA  0100               	movlb	0
+    95  007EAC  EF58  F03F         	goto	_main	;jump to C main() function
+    96                           
+    97                           	psect	bssCOMRAM
+    98  00000B                     __pbssCOMRAM:
+    99                           	callstack 0
+   100  00000B                     _BUTON_Ticks:
+   101                           	callstack 0
+   102  00000B                     	ds	1
+   103  00000C                     _BUTON_Status:
+   104                           	callstack 0
+   105  00000C                     	ds	1
+   106                           
+   107                           	psect	cstackCOMRAM
+   108  000001                     __pcstackCOMRAM:
+   109                           	callstack 0
+   110  000001                     ?_ADC_GetSingleConversion:
+   111                           	callstack 0
+   112  000001                     ADC_Initialize@PortConfig:
+   113                           	callstack 0
+   114  000001                     Delay_ms@miliseconds:
+   115                           	callstack 0
+   116                           
+   117                           ; 2 bytes @ 0x0
+   118  000001                     	ds	1
+   119  000002                     
+   120                           ; 1 bytes @ 0x1
+   121  000002                     	ds	1
+   122  000003                     ??_ADC_GetSingleConversion:
+   123  000003                     ??_Delay_ms:
+   124                           
+   125                           ; 1 bytes @ 0x2
+   126  000003                     	ds	1
+   127  000004                     Delay_ms@j:
+   128                           	callstack 0
+   129                           
+   130                           ; 2 bytes @ 0x3
+   131  000004                     	ds	1
+   132  000005                     ADC_GetSingleConversion@Channel:
+   133                           	callstack 0
+   134                           
+   135                           ; 1 bytes @ 0x4
+   136  000005                     	ds	1
+   137  000006                     ADC_GetSingleConversion@RESULT_ADC:
+   138                           	callstack 0
+   139                           
+   140                           ; 2 bytes @ 0x5
+   141  000006                     	ds	2
+   142  000008                     ??_IO_Task:
+   143                           
+   144                           ; 1 bytes @ 0x7
+   145  000008                     	ds	1
+   146  000009                     
+   147                           ; 1 bytes @ 0x8
+   148 ;;
+   149 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   150 ;;
+   151 ;; *************** function _main *****************
+   152 ;; Defined at:
+   153 ;;		line 23 in file "main.c"
+   154 ;; Parameters:    Size  Location     Type
+   155 ;;		None
+   156 ;; Auto vars:     Size  Location     Type
+   157 ;;		None
+   158 ;; Return value:  Size  Location     Type
+   159 ;;                  1    wreg      void 
+   160 ;; Registers used:
+   161 ;;		wreg, status,2, status,0, cstack
+   162 ;; Tracked objects:
+   163 ;;		On entry : 0/0
+   164 ;;		On exit  : 0/0
+   165 ;;		Unchanged: 0/0
+   166 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   167 ;;      Params:         0       0       0       0       0       0       0       0       0
+   168 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   169 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   170 ;;      Totals:         0       0       0       0       0       0       0       0       0
+   171 ;;Total ram usage:        0 bytes
+   172 ;; Hardware stack levels required when called: 3
+   173 ;; This function calls:
+   174 ;;		_IO_Task
+   175 ;;		_MCU_Initialize
+   176 ;; This function is called by:
+   177 ;;		Startup code after reset
+   178 ;; This function uses a non-reentrant model
+   179 ;;
+   180                           
+   181                           	psect	text0
+   182  007EB0                     __ptext0:
+   183                           	callstack 0
+   184  007EB0                     _main:
+   185                           	callstack 28
+   186  007EB0                     
+   187                           ;main.c: 24:     MCU_Initialize();
+   188  007EB0  EC74  F03F         	call	_MCU_Initialize	;wreg free
+   189  007EB4                     l9:
+   190                           
+   191                           ;main.c: 26:         IO_Task();
+   192  007EB4  ECCB  F03F         	call	_IO_Task	;wreg free
+   193  007EB8  EF5A  F03F         	goto	l9
+   194  007EBC  EF00  F000         	goto	start
+   195  007EC0                     __end_of_main:
+   196                           	callstack 0
+   197                           
+   198 ;; *************** function _MCU_Initialize *****************
+   199 ;; Defined at:
+   200 ;;		line 16 in file "mcu.c"
+   201 ;; Parameters:    Size  Location     Type
+   202 ;;		None
+   203 ;; Auto vars:     Size  Location     Type
+   204 ;;		None
+   205 ;; Return value:  Size  Location     Type
+   206 ;;                  1    wreg      void 
+   207 ;; Registers used:
+   208 ;;		wreg, status,2, status,0, cstack
+   209 ;; Tracked objects:
+   210 ;;		On entry : 0/0
+   211 ;;		On exit  : 0/0
+   212 ;;		Unchanged: 0/0
+   213 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   214 ;;      Params:         0       0       0       0       0       0       0       0       0
+   215 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   216 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   217 ;;      Totals:         0       0       0       0       0       0       0       0       0
+   218 ;;Total ram usage:        0 bytes
+   219 ;; Hardware stack levels used: 1
+   220 ;; Hardware stack levels required when called: 2
+   221 ;; This function calls:
+   222 ;;		_ADC_Initialize
+   223 ;; This function is called by:
+   224 ;;		_main
+   225 ;; This function uses a non-reentrant model
+   226 ;;
+   227                           
+   228                           	psect	text1
+   229  007EE8                     __ptext1:
+   230                           	callstack 0
+   231  007EE8                     _MCU_Initialize:
+   232                           	callstack 28
+   233  007EE8                     
+   234                           ;mcu.c: 18:     TRISA = 0x01;
+   235  007EE8  0E01               	movlw	1
+   236  007EEA  6E92               	movwf	146,c	;volatile
+   237                           
+   238                           ;mcu.c: 19:     TRISE = 0b001;
+   239  007EEC  0E01               	movlw	1
+   240  007EEE  6E96               	movwf	150,c	;volatile
+   241                           
+   242                           ;mcu.c: 22:     LATA = 0x00;
+   243  007EF0  0E00               	movlw	0
+   244  007EF2  6E89               	movwf	137,c	;volatile
+   245                           
+   246                           ;mcu.c: 23:     LATE = 0b000;
+   247  007EF4  0E00               	movlw	0
+   248  007EF6  6E8D               	movwf	141,c	;volatile
+   249                           
+   250                           ;mcu.c: 24:     PORTA = 0x00;
+   251  007EF8  0E00               	movlw	0
+   252  007EFA  6E80               	movwf	128,c	;volatile
+   253                           
+   254                           ;mcu.c: 25:     PORTE = 0b000;
+   255  007EFC  0E00               	movlw	0
+   256  007EFE  6E84               	movwf	132,c	;volatile
+   257  007F00                     
+   258                           ;mcu.c: 28:     ADC_Initialize(0b1110);
+   259  007F00  0E0E               	movlw	14
+   260  007F02  EC60  F03F         	call	_ADC_Initialize
+   261  007F06                     
+   262                           ;mcu.c: 31:     OSCCON = 0x72;
+   263  007F06  0E72               	movlw	114
+   264  007F08  6ED3               	movwf	211,c	;volatile
+   265  007F0A                     
+   266                           ;mcu.c: 34:     BUTON_Ticks = 0;
+   267  007F0A  0E00               	movlw	0
+   268  007F0C  6E0B               	movwf	_BUTON_Ticks^0,c
+   269  007F0E                     
+   270                           ;mcu.c: 35:     BUTON_Status = 0;
+   271  007F0E  0E00               	movlw	0
+   272  007F10  6E0C               	movwf	_BUTON_Status^0,c
+   273  007F12                     
+   274                           ;mcu.c: 36:     adc_Result = 0;
+   275  007F12  0E00               	movlw	0
+   276  007F14  6E0A               	movwf	(_adc_Result+1)^0,c
+   277  007F16  0E00               	movlw	0
+   278  007F18  6E09               	movwf	_adc_Result^0,c
+   279  007F1A  0012               	return		;funcret
+   280  007F1C                     __end_of_MCU_Initialize:
+   281                           	callstack 0
+   282                           
+   283 ;; *************** function _ADC_Initialize *****************
+   284 ;; Defined at:
+   285 ;;		line 11 in file "adc.c"
+   286 ;; Parameters:    Size  Location     Type
+   287 ;;  PortConfig      1    wreg     unsigned char 
+   288 ;; Auto vars:     Size  Location     Type
+   289 ;;  PortConfig      1    0[COMRAM] unsigned char 
+   290 ;; Return value:  Size  Location     Type
+   291 ;;                  1    wreg      void 
+   292 ;; Registers used:
+   293 ;;		wreg, status,2, status,0, cstack
+   294 ;; Tracked objects:
+   295 ;;		On entry : 0/0
+   296 ;;		On exit  : 0/0
+   297 ;;		Unchanged: 0/0
+   298 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   299 ;;      Params:         0       0       0       0       0       0       0       0       0
+   300 ;;      Locals:         1       0       0       0       0       0       0       0       0
+   301 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   302 ;;      Totals:         1       0       0       0       0       0       0       0       0
+   303 ;;Total ram usage:        1 bytes
+   304 ;; Hardware stack levels used: 1
+   305 ;; Hardware stack levels required when called: 1
+   306 ;; This function calls:
+   307 ;;		_ADC_Start
+   308 ;; This function is called by:
+   309 ;;		_MCU_Initialize
+   310 ;; This function uses a non-reentrant model
+   311 ;;
+   312                           
+   313                           	psect	text2
+   314  007EC0                     __ptext2:
+   315                           	callstack 0
+   316  007EC0                     _ADC_Initialize:
+   317                           	callstack 28
+   318                           
+   319                           ;incstack = 0
+   320                           ;ADC_Initialize@PortConfig stored from wreg
+   321  007EC0  6E01               	movwf	ADC_Initialize@PortConfig^0,c
+   322  007EC2                     
+   323                           ;adc.c: 13:     ADCON1bits.VCFG0 = 0;
+   324  007EC2  98C1               	bcf	193,4,c	;volatile
+   325                           
+   326                           ;adc.c: 14:     ADCON1bits.VCFG1 = 0;
+   327  007EC4  9AC1               	bcf	193,5,c	;volatile
+   328  007EC6                     
+   329                           ;adc.c: 15:     ADCON1bits.PCFG = PortConfig;
+   330  007EC6  50C1               	movf	193,w,c	;volatile
+   331  007EC8  1801               	xorwf	ADC_Initialize@PortConfig^0,w,c
+   332  007ECA  0BF0               	andlw	-16
+   333  007ECC  1801               	xorwf	ADC_Initialize@PortConfig^0,w,c
+   334  007ECE  6EC1               	movwf	193,c	;volatile
+   335  007ED0                     
+   336                           ;adc.c: 16:     ADCON2bits.ADFM = 1;
+   337  007ED0  8EC0               	bsf	192,7,c	;volatile
+   338  007ED2                     
+   339                           ;adc.c: 17:     ADCON2bits.ADCS = 0b100;
+   340  007ED2  50C0               	movf	192,w,c	;volatile
+   341  007ED4  0BF8               	andlw	-8
+   342  007ED6  0904               	iorlw	4
+   343  007ED8  6EC0               	movwf	192,c	;volatile
+   344  007EDA                     
+   345                           ;adc.c: 18:     ADCON2bits.ACQT = 0b010;
+   346  007EDA  50C0               	movf	192,w,c	;volatile
+   347  007EDC  0BC7               	andlw	-57
+   348  007EDE  0910               	iorlw	16
+   349  007EE0  6EC0               	movwf	192,c	;volatile
+   350  007EE2                     
+   351                           ;adc.c: 19:     ADC_Start();
+   352  007EE2  EC51  F03F         	call	_ADC_Start	;wreg free
+   353  007EE6  0012               	return		;funcret
+   354  007EE8                     __end_of_ADC_Initialize:
+   355                           	callstack 0
+   356                           
+   357 ;; *************** function _ADC_Start *****************
+   358 ;; Defined at:
+   359 ;;		line 22 in file "adc.c"
+   360 ;; Parameters:    Size  Location     Type
+   361 ;;		None
+   362 ;; Auto vars:     Size  Location     Type
+   363 ;;		None
+   364 ;; Return value:  Size  Location     Type
+   365 ;;                  1    wreg      void 
+   366 ;; Registers used:
+   367 ;;		None
+   368 ;; Tracked objects:
+   369 ;;		On entry : 0/0
+   370 ;;		On exit  : 0/0
+   371 ;;		Unchanged: 0/0
+   372 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   373 ;;      Params:         0       0       0       0       0       0       0       0       0
+   374 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   375 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   376 ;;      Totals:         0       0       0       0       0       0       0       0       0
+   377 ;;Total ram usage:        0 bytes
+   378 ;; Hardware stack levels used: 1
+   379 ;; This function calls:
+   380 ;;		Nothing
+   381 ;; This function is called by:
+   382 ;;		_ADC_Initialize
+   383 ;; This function uses a non-reentrant model
+   384 ;;
+   385                           
+   386                           	psect	text3
+   387  007EA2                     __ptext3:
+   388                           	callstack 0
+   389  007EA2                     _ADC_Start:
+   390                           	callstack 28
+   391  007EA2                     
+   392                           ;adc.c: 23:     ADCON0bits.ADON = 1;
+   393  007EA2  80C2               	bsf	194,0,c	;volatile
+   394  007EA4  0012               	return		;funcret
+   395  007EA6                     __end_of_ADC_Start:
+   396                           	callstack 0
+   397                           
+   398 ;; *************** function _IO_Task *****************
+   399 ;; Defined at:
+   400 ;;		line 46 in file "mcu.c"
+   401 ;; Parameters:    Size  Location     Type
+   402 ;;		None
+   403 ;; Auto vars:     Size  Location     Type
+   404 ;;		None
+   405 ;; Return value:  Size  Location     Type
+   406 ;;                  1    wreg      void 
+   407 ;; Registers used:
+   408 ;;		wreg, status,2, status,0, cstack
+   409 ;; Tracked objects:
+   410 ;;		On entry : 0/0
+   411 ;;		On exit  : 0/0
+   412 ;;		Unchanged: 0/0
+   413 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   414 ;;      Params:         0       0       0       0       0       0       0       0       0
+   415 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   416 ;;      Temps:          1       0       0       0       0       0       0       0       0
+   417 ;;      Totals:         1       0       0       0       0       0       0       0       0
+   418 ;;Total ram usage:        1 bytes
+   419 ;; Hardware stack levels used: 1
+   420 ;; Hardware stack levels required when called: 1
+   421 ;; This function calls:
+   422 ;;		_ADC_GetSingleConversion
+   423 ;;		_Delay_ms
+   424 ;; This function is called by:
+   425 ;;		_main
+   426 ;; This function uses a non-reentrant model
+   427 ;;
+   428                           
+   429                           	psect	text4
+   430  007F96                     __ptext4:
+   431                           	callstack 0
+   432  007F96                     _IO_Task:
+   433                           	callstack 29
+   434  007F96                     
+   435                           ;mcu.c: 48:     adc_Result = ADC_GetSingleConversion(0b0000) * 2;
+   436  007F96  0E00               	movlw	0
+   437  007F98  ECA9  F03F         	call	_ADC_GetSingleConversion
+   438  007F9C  90D8               	bcf	status,0,c
+   439  007F9E  3401               	rlcf	?_ADC_GetSingleConversion^0,w,c
+   440  007FA0  6E09               	movwf	_adc_Result^0,c
+   441  007FA2  3402               	rlcf	(?_ADC_GetSingleConversion+1)^0,w,c
+   442  007FA4  6E0A               	movwf	(_adc_Result+1)^0,c
+   443                           
+   444                           ;mcu.c: 49:     Delay_ms(100);
+   445  007FA6  0E00               	movlw	0
+   446  007FA8  6E02               	movwf	(Delay_ms@miliseconds+1)^0,c
+   447  007FAA  0E64               	movlw	100
+   448  007FAC  6E01               	movwf	Delay_ms@miliseconds^0,c
+   449  007FAE  EC8E  F03F         	call	_Delay_ms	;wreg free
+   450                           
+   451                           ;mcu.c: 52:     Delay_ms(adc_Result + 1 );
+   452  007FB2  0E01               	movlw	1
+   453  007FB4  2409               	addwf	_adc_Result^0,w,c
+   454  007FB6  6E01               	movwf	Delay_ms@miliseconds^0,c
+   455  007FB8  0E00               	movlw	0
+   456  007FBA  200A               	addwfc	(_adc_Result+1)^0,w,c
+   457  007FBC  6E02               	movwf	(Delay_ms@miliseconds+1)^0,c
+   458  007FBE  EC8E  F03F         	call	_Delay_ms	;wreg free
+   459  007FC2  B28D               	btfsc	141,1,c	;volatile
+   460  007FC4  EFE6  F03F         	goto	u71
+   461  007FC8  EFE9  F03F         	goto	u70
+   462  007FCC                     u71:
+   463  007FCC  0E01               	movlw	1
+   464  007FCE  EFEA  F03F         	goto	u76
+   465  007FD2                     u70:
+   466  007FD2  0E00               	movlw	0
+   467  007FD4                     u76:
+   468  007FD4  0AFF               	xorlw	255
+   469  007FD6  6E08               	movwf	??_IO_Task^0,c
+   470  007FD8  4608               	rlncf	??_IO_Task^0,f,c
+   471  007FDA  508D               	movf	141,w,c	;volatile
+   472  007FDC  1808               	xorwf	??_IO_Task^0,w,c
+   473  007FDE  0BFD               	andlw	-3
+   474  007FE0  1808               	xorwf	??_IO_Task^0,w,c
+   475  007FE2  6E8D               	movwf	141,c	;volatile
+   476  007FE4                     
+   477                           ;mcu.c: 56:     if(adc_Result < 512)
+   478  007FE4  0E02               	movlw	2
+   479  007FE6  5C0A               	subwf	(_adc_Result+1)^0,w,c
+   480  007FE8  B0D8               	btfsc	status,0,c
+   481  007FEA  EFF9  F03F         	goto	u81
+   482  007FEE  EFFB  F03F         	goto	u80
+   483  007FF2                     u81:
+   484  007FF2  EFFE  F03F         	goto	l58
+   485  007FF6                     u80:
+   486  007FF6  848D               	bsf	141,2,c	;volatile
+   487  007FF8  EFFF  F03F         	goto	l60
+   488  007FFC                     l58:
+   489  007FFC  948D               	bcf	141,2,c	;volatile
+   490  007FFE                     l60:
+   491  007FFE  0012               	return		;funcret
+   492  008000                     __end_of_IO_Task:
+   493                           	callstack 0
+   494                           
+   495 ;; *************** function _Delay_ms *****************
+   496 ;; Defined at:
+   497 ;;		line 39 in file "mcu.c"
+   498 ;; Parameters:    Size  Location     Type
+   499 ;;  miliseconds     2    0[COMRAM] unsigned short 
+   500 ;; Auto vars:     Size  Location     Type
+   501 ;;  j               2    3[COMRAM] unsigned int 
+   502 ;; Return value:  Size  Location     Type
+   503 ;;                  1    wreg      void 
+   504 ;; Registers used:
+   505 ;;		wreg, status,2, status,0
+   506 ;; Tracked objects:
+   507 ;;		On entry : 0/0
+   508 ;;		On exit  : 0/0
+   509 ;;		Unchanged: 0/0
+   510 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   511 ;;      Params:         2       0       0       0       0       0       0       0       0
+   512 ;;      Locals:         2       0       0       0       0       0       0       0       0
+   513 ;;      Temps:          1       0       0       0       0       0       0       0       0
+   514 ;;      Totals:         5       0       0       0       0       0       0       0       0
+   515 ;;Total ram usage:        5 bytes
+   516 ;; Hardware stack levels used: 1
+   517 ;; This function calls:
+   518 ;;		Nothing
+   519 ;; This function is called by:
+   520 ;;		_IO_Task
+   521 ;; This function uses a non-reentrant model
+   522 ;;
+   523                           
+   524                           	psect	text5
+   525  007F1C                     __ptext5:
+   526                           	callstack 0
+   527  007F1C                     _Delay_ms:
+   528                           	callstack 29
+   529  007F1C                     
+   530                           ;mcu.c: 40:     unsigned int j;;mcu.c: 41:     for(j=0; j<miliseconds; j++){
+   531  007F1C  0E00               	movlw	0
+   532  007F1E  6E05               	movwf	(Delay_ms@j+1)^0,c
+   533  007F20  0E00               	movlw	0
+   534  007F22  6E04               	movwf	Delay_ms@j^0,c
+   535  007F24  EF9D  F03F         	goto	l46
+   536  007F28                     l819:
+   537                           
+   538                           ;mcu.c: 42:         _delay((unsigned long)((1)*(8000000/4000.0)));
+   539  007F28  0E03               	movlw	3
+   540  007F2A  6E03               	movwf	??_Delay_ms^0,c
+   541  007F2C  0E98               	movlw	152
+   542  007F2E                     u97:
+   543  007F2E  2EE8               	decfsz	wreg,f,c
+   544  007F30  D7FE               	bra	u97
+   545  007F32  2E03               	decfsz	??_Delay_ms^0,f,c
+   546  007F34  D7FC               	bra	u97
+   547  007F36                     
+   548                           ;mcu.c: 43:     }
+   549  007F36  4A04               	infsnz	Delay_ms@j^0,f,c
+   550  007F38  2A05               	incf	(Delay_ms@j+1)^0,f,c
+   551  007F3A                     l46:
+   552  007F3A  5001               	movf	Delay_ms@miliseconds^0,w,c
+   553  007F3C  5C04               	subwf	Delay_ms@j^0,w,c
+   554  007F3E  5002               	movf	(Delay_ms@miliseconds+1)^0,w,c
+   555  007F40  5805               	subwfb	(Delay_ms@j+1)^0,w,c
+   556  007F42  A0D8               	btfss	status,0,c
+   557  007F44  EFA6  F03F         	goto	u51
+   558  007F48  EFA8  F03F         	goto	u50
+   559  007F4C                     u51:
+   560  007F4C  EF94  F03F         	goto	l819
+   561  007F50                     u50:
+   562  007F50  0012               	return		;funcret
+   563  007F52                     __end_of_Delay_ms:
+   564                           	callstack 0
+   565                           
+   566 ;; *************** function _ADC_GetSingleConversion *****************
+   567 ;; Defined at:
+   568 ;;		line 30 in file "adc.c"
+   569 ;; Parameters:    Size  Location     Type
+   570 ;;  Channel         1    wreg     unsigned char 
+   571 ;; Auto vars:     Size  Location     Type
+   572 ;;  Channel         1    4[COMRAM] unsigned char 
+   573 ;;  RESULT_ADC      2    5[COMRAM] unsigned short 
+   574 ;; Return value:  Size  Location     Type
+   575 ;;                  2    0[COMRAM] unsigned short 
+   576 ;; Registers used:
+   577 ;;		wreg, status,2, status,0
+   578 ;; Tracked objects:
+   579 ;;		On entry : 0/0
+   580 ;;		On exit  : 0/0
+   581 ;;		Unchanged: 0/0
+   582 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   583 ;;      Params:         2       0       0       0       0       0       0       0       0
+   584 ;;      Locals:         3       0       0       0       0       0       0       0       0
+   585 ;;      Temps:          2       0       0       0       0       0       0       0       0
+   586 ;;      Totals:         7       0       0       0       0       0       0       0       0
+   587 ;;Total ram usage:        7 bytes
+   588 ;; Hardware stack levels used: 1
+   589 ;; This function calls:
+   590 ;;		Nothing
+   591 ;; This function is called by:
+   592 ;;		_IO_Task
+   593 ;; This function uses a non-reentrant model
+   594 ;;
+   595                           
+   596                           	psect	text6
+   597  007F52                     __ptext6:
+   598                           	callstack 0
+   599  007F52                     _ADC_GetSingleConversion:
+   600                           	callstack 29
+   601                           
+   602                           ;incstack = 0
+   603                           ;ADC_GetSingleConversion@Channel stored from wreg
+   604  007F52  6E05               	movwf	ADC_GetSingleConversion@Channel^0,c
+   605  007F54                     
+   606                           ;adc.c: 32:     ADCON0bits.CHS = Channel;
+   607  007F54  C005  F003         	movff	ADC_GetSingleConversion@Channel,??_ADC_GetSingleConversion
+   608  007F58  4603               	rlncf	??_ADC_GetSingleConversion^0,f,c
+   609  007F5A  4603               	rlncf	??_ADC_GetSingleConversion^0,f,c
+   610  007F5C  50C2               	movf	194,w,c	;volatile
+   611  007F5E  1803               	xorwf	??_ADC_GetSingleConversion^0,w,c
+   612  007F60  0BC3               	andlw	-61
+   613  007F62  1803               	xorwf	??_ADC_GetSingleConversion^0,w,c
+   614  007F64  6EC2               	movwf	194,c	;volatile
+   615  007F66                     
+   616                           ;adc.c: 33:     ADCON0bits.GO = 1;
+   617  007F66  82C2               	bsf	194,1,c	;volatile
+   618  007F68                     l84:
+   619  007F68  B2C2               	btfsc	194,1,c	;volatile
+   620  007F6A  EFB9  F03F         	goto	u61
+   621  007F6E  EFBB  F03F         	goto	u60
+   622  007F72                     u61:
+   623  007F72  EFB4  F03F         	goto	l84
+   624  007F76                     u60:
+   625  007F76                     
+   626                           ;adc.c: 35:     RESULT_ADC = (uint16_t)((ADRESH << 8) | ADRESL);
+   627  007F76  50C3               	movf	195,w,c	;volatile
+   628  007F78  CFC4 F003          	movff	4036,??_ADC_GetSingleConversion	;volatile
+   629  007F7C  6A04               	clrf	(??_ADC_GetSingleConversion+1)^0,c
+   630  007F7E  C003  F004         	movff	??_ADC_GetSingleConversion,??_ADC_GetSingleConversion+1
+   631  007F82  6A03               	clrf	??_ADC_GetSingleConversion^0,c
+   632  007F84  1003               	iorwf	??_ADC_GetSingleConversion^0,w,c
+   633  007F86  6E06               	movwf	ADC_GetSingleConversion@RESULT_ADC^0,c
+   634  007F88  5004               	movf	(??_ADC_GetSingleConversion+1)^0,w,c
+   635  007F8A  6E07               	movwf	(ADC_GetSingleConversion@RESULT_ADC+1)^0,c
+   636  007F8C                     
+   637                           ;adc.c: 36:     return (RESULT_ADC);
+   638  007F8C  C006  F001         	movff	ADC_GetSingleConversion@RESULT_ADC,?_ADC_GetSingleConversion
+   639  007F90  C007  F002         	movff	ADC_GetSingleConversion@RESULT_ADC+1,?_ADC_GetSingleConversion+1
+   640  007F94  0012               	return		;funcret
+   641  007F96                     __end_of_ADC_GetSingleConversion:
+   642                           	callstack 0
+   643  0000                     
+   644                           	psect	rparam
+   645  0000                     
+   646                           	psect	idloc
+   647                           
+   648                           ;Config register IDLOC0 @ 0x200000
+   649                           ;	unspecified, using default values
+   650  200000                     	org	2097152
+   651  200000  FF                 	db	255
+   652                           
+   653                           ;Config register IDLOC1 @ 0x200001
+   654                           ;	unspecified, using default values
+   655  200001                     	org	2097153
+   656  200001  FF                 	db	255
+   657                           
+   658                           ;Config register IDLOC2 @ 0x200002
+   659                           ;	unspecified, using default values
+   660  200002                     	org	2097154
+   661  200002  FF                 	db	255
+   662                           
+   663                           ;Config register IDLOC3 @ 0x200003
+   664                           ;	unspecified, using default values
+   665  200003                     	org	2097155
+   666  200003  FF                 	db	255
+   667                           
+   668                           ;Config register IDLOC4 @ 0x200004
+   669                           ;	unspecified, using default values
+   670  200004                     	org	2097156
+   671  200004  FF                 	db	255
+   672                           
+   673                           ;Config register IDLOC5 @ 0x200005
+   674                           ;	unspecified, using default values
+   675  200005                     	org	2097157
+   676  200005  FF                 	db	255
+   677                           
+   678                           ;Config register IDLOC6 @ 0x200006
+   679                           ;	unspecified, using default values
+   680  200006                     	org	2097158
+   681  200006  FF                 	db	255
+   682                           
+   683                           ;Config register IDLOC7 @ 0x200007
+   684                           ;	unspecified, using default values
+   685  200007                     	org	2097159
+   686  200007  FF                 	db	255
+   687                           
+   688                           	psect	config
+   689                           
+   690                           ;Config register CONFIG1L @ 0x300000
+   691                           ;	unspecified, using default values
+   692                           ;	PLL Prescaler Selection bits
+   693                           ;	PLLDIV = 0x0, unprogrammed default
+   694                           ;	System Clock Postscaler Selection bits
+   695                           ;	CPUDIV = 0x0, unprogrammed default
+   696                           ;	USB Clock Selection bit (used in Full-Speed USB mode only; UCFG:FSEN = 1)
+   697                           ;	USBDIV = 0x0, unprogrammed default
+   698  300000                     	org	3145728
+   699  300000  00                 	db	0
+   700                           
+   701                           ;Config register CONFIG1H @ 0x300001
+   702                           ;	Oscillator Selection bits
+   703                           ;	FOSC = INTOSCIO_EC, Internal oscillator, port function on RA6, EC used by USB (INTIO)
+   704                           ;	Fail-Safe Clock Monitor Enable bit
+   705                           ;	FCMEN = OFF, Fail-Safe Clock Monitor disabled
+   706                           ;	Internal/External Oscillator Switchover bit
+   707                           ;	IESO = OFF, Oscillator Switchover mode disabled
+   708  300001                     	org	3145729
+   709  300001  08                 	db	8
+   710                           
+   711                           ;Config register CONFIG2L @ 0x300002
+   712                           ;	Power-up Timer Enable bit
+   713                           ;	PWRT = OFF, PWRT disabled
+   714                           ;	Brown-out Reset Enable bits
+   715                           ;	BOR = ON, Brown-out Reset enabled in hardware only (SBOREN is disabled)
+   716                           ;	Brown-out Reset Voltage bits
+   717                           ;	BORV = 3, Minimum setting 2.05V
+   718                           ;	USB Voltage Regulator Enable bit
+   719                           ;	VREGEN = OFF, USB voltage regulator disabled
+   720  300002                     	org	3145730
+   721  300002  1F                 	db	31
+   722                           
+   723                           ;Config register CONFIG2H @ 0x300003
+   724                           ;	Watchdog Timer Enable bit
+   725                           ;	WDT = OFF, WDT disabled (control is placed on the SWDTEN bit)
+   726                           ;	Watchdog Timer Postscale Select bits
+   727                           ;	WDTPS = 32768, 1:32768
+   728  300003                     	org	3145731
+   729  300003  1E                 	db	30
+   730                           
+   731                           ; Padding undefined space
+   732  300004                     	org	3145732
+   733  300004  FF                 	db	255
+   734                           
+   735                           ;Config register CONFIG3H @ 0x300005
+   736                           ;	CCP2 MUX bit
+   737                           ;	CCP2MX = OFF, CCP2 input/output is multiplexed with RB3
+   738                           ;	PORTB A/D Enable bit
+   739                           ;	PBADEN = OFF, PORTB<4:0> pins are configured as digital I/O on Reset
+   740                           ;	Low-Power Timer 1 Oscillator Enable bit
+   741                           ;	LPT1OSC = OFF, Timer1 configured for higher power operation
+   742                           ;	MCLR Pin Enable bit
+   743                           ;	MCLRE = ON, MCLR pin enabled; RE3 input pin disabled
+   744  300005                     	org	3145733
+   745  300005  80                 	db	128
+   746                           
+   747                           ;Config register CONFIG4L @ 0x300006
+   748                           ;	Stack Full/Underflow Reset Enable bit
+   749                           ;	STVREN = OFF, Stack full/underflow will not cause Reset
+   750                           ;	Single-Supply ICSP Enable bit
+   751                           ;	LVP = OFF, Single-Supply ICSP disabled
+   752                           ;	Dedicated In-Circuit Debug/Programming Port (ICPORT) Enable bit
+   753                           ;	ICPRT = OFF, ICPORT disabled
+   754                           ;	Extended Instruction Set Enable bit
+   755                           ;	XINST = OFF, Instruction set extension and Indexed Addressing mode disabled (Legacy mo
+      +                          de)
+   756                           ;	Background Debugger Enable bit
+   757                           ;	DEBUG = 0x1, unprogrammed default
+   758  300006                     	org	3145734
+   759  300006  80                 	db	128
+   760                           
+   761                           ; Padding undefined space
+   762  300007                     	org	3145735
+   763  300007  FF                 	db	255
+   764                           
+   765                           ;Config register CONFIG5L @ 0x300008
+   766                           ;	Code Protection bit
+   767                           ;	CP0 = OFF, Block 0 (000800-001FFFh) is not code-protected
+   768                           ;	Code Protection bit
+   769                           ;	CP1 = OFF, Block 1 (002000-003FFFh) is not code-protected
+   770                           ;	Code Protection bit
+   771                           ;	CP2 = OFF, Block 2 (004000-005FFFh) is not code-protected
+   772                           ;	Code Protection bit
+   773                           ;	CP3 = OFF, Block 3 (006000-007FFFh) is not code-protected
+   774  300008                     	org	3145736
+   775  300008  0F                 	db	15
+   776                           
+   777                           ;Config register CONFIG5H @ 0x300009
+   778                           ;	Boot Block Code Protection bit
+   779                           ;	CPB = OFF, Boot block (000000-0007FFh) is not code-protected
+   780                           ;	Data EEPROM Code Protection bit
+   781                           ;	CPD = OFF, Data EEPROM is not code-protected
+   782  300009                     	org	3145737
+   783  300009  C0                 	db	192
+   784                           
+   785                           ;Config register CONFIG6L @ 0x30000A
+   786                           ;	Write Protection bit
+   787                           ;	WRT0 = OFF, Block 0 (000800-001FFFh) is not write-protected
+   788                           ;	Write Protection bit
+   789                           ;	WRT1 = OFF, Block 1 (002000-003FFFh) is not write-protected
+   790                           ;	Write Protection bit
+   791                           ;	WRT2 = OFF, Block 2 (004000-005FFFh) is not write-protected
+   792                           ;	Write Protection bit
+   793                           ;	WRT3 = OFF, Block 3 (006000-007FFFh) is not write-protected
+   794  30000A                     	org	3145738
+   795  30000A  0F                 	db	15
+   796                           
+   797                           ;Config register CONFIG6H @ 0x30000B
+   798                           ;	Configuration Register Write Protection bit
+   799                           ;	WRTC = OFF, Configuration registers (300000-3000FFh) are not write-protected
+   800                           ;	Boot Block Write Protection bit
+   801                           ;	WRTB = OFF, Boot block (000000-0007FFh) is not write-protected
+   802                           ;	Data EEPROM Write Protection bit
+   803                           ;	WRTD = OFF, Data EEPROM is not write-protected
+   804  30000B                     	org	3145739
+   805  30000B  E0                 	db	224
+   806                           
+   807                           ;Config register CONFIG7L @ 0x30000C
+   808                           ;	Table Read Protection bit
+   809                           ;	EBTR0 = OFF, Block 0 (000800-001FFFh) is not protected from table reads executed in ot
+      +                          her blocks
+   810                           ;	Table Read Protection bit
+   811                           ;	EBTR1 = OFF, Block 1 (002000-003FFFh) is not protected from table reads executed in ot
+      +                          her blocks
+   812                           ;	Table Read Protection bit
+   813                           ;	EBTR2 = OFF, Block 2 (004000-005FFFh) is not protected from table reads executed in ot
+      +                          her blocks
+   814                           ;	Table Read Protection bit
+   815                           ;	EBTR3 = OFF, Block 3 (006000-007FFFh) is not protected from table reads executed in ot
+      +                          her blocks
+   816  30000C                     	org	3145740
+   817  30000C  0F                 	db	15
+   818                           
+   819                           ;Config register CONFIG7H @ 0x30000D
+   820                           ;	Boot Block Table Read Protection bit
+   821                           ;	EBTRB = OFF, Boot block (000000-0007FFh) is not protected from table reads executed in
+      +                           other blocks
+   822  30000D                     	org	3145741
+   823  30000D  40                 	db	64
+   824                           tosu	equ	0xFFF
+   825                           tosh	equ	0xFFE
+   826                           tosl	equ	0xFFD
+   827                           stkptr	equ	0xFFC
+   828                           pclatu	equ	0xFFB
+   829                           pclath	equ	0xFFA
+   830                           pcl	equ	0xFF9
+   831                           tblptru	equ	0xFF8
+   832                           tblptrh	equ	0xFF7
+   833                           tblptrl	equ	0xFF6
+   834                           tablat	equ	0xFF5
+   835                           prodh	equ	0xFF4
+   836                           prodl	equ	0xFF3
+   837                           indf0	equ	0xFEF
+   838                           postinc0	equ	0xFEE
+   839                           postdec0	equ	0xFED
+   840                           preinc0	equ	0xFEC
+   841                           plusw0	equ	0xFEB
+   842                           fsr0h	equ	0xFEA
+   843                           fsr0l	equ	0xFE9
+   844                           wreg	equ	0xFE8
+   845                           indf1	equ	0xFE7
+   846                           postinc1	equ	0xFE6
+   847                           postdec1	equ	0xFE5
+   848                           preinc1	equ	0xFE4
+   849                           plusw1	equ	0xFE3
+   850                           fsr1h	equ	0xFE2
+   851                           fsr1l	equ	0xFE1
+   852                           bsr	equ	0xFE0
+   853                           indf2	equ	0xFDF
+   854                           postinc2	equ	0xFDE
+   855                           postdec2	equ	0xFDD
+   856                           preinc2	equ	0xFDC
+   857                           plusw2	equ	0xFDB
+   858                           fsr2h	equ	0xFDA
+   859                           fsr2l	equ	0xFD9
+   860                           status	equ	0xFD8
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         2
+    Persistent  2
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM           95      8      12
+    BANK0           160      0       0
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+    BANK6           256      0       0
+    BANK7           256      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMRAM
+
+    _main->_IO_Task
+    _MCU_Initialize->_ADC_Initialize
+    _IO_Task->_ADC_GetSingleConversion
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0     259
+                            _IO_Task
+                     _MCU_Initialize
+ ---------------------------------------------------------------------------------
+ (1) _MCU_Initialize                                       0     0      0      15
+                     _ADC_Initialize
+ ---------------------------------------------------------------------------------
+ (2) _ADC_Initialize                                       1     1      0      15
+                                              0 COMRAM     1     1      0
+                          _ADC_Start
+ ---------------------------------------------------------------------------------
+ (3) _ADC_Start                                            0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _IO_Task                                              1     1      0     244
+                                              7 COMRAM     1     1      0
+            _ADC_GetSingleConversion
+                           _Delay_ms
+ ---------------------------------------------------------------------------------
+ (2) _Delay_ms                                             5     3      2     198
+                                              0 COMRAM     5     3      2
+ ---------------------------------------------------------------------------------
+ (2) _ADC_GetSingleConversion                              7     5      2      46
+                                              0 COMRAM     7     5      2
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _IO_Task
+     _ADC_GetSingleConversion
+     _Delay_ms
+   _MCU_Initialize
+     _ADC_Initialize
+       _ADC_Start
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM             7FF      0       0      30        0.0%
+EEDATA             100      0       0       0        0.0%
+BITBANK7           100      0       0      18        0.0%
+BANK7              100      0       0      19        0.0%
+BITBANK6           100      0       0      16        0.0%
+BANK6              100      0       0      17        0.0%
+BITBANK5           100      0       0      14        0.0%
+BANK5              100      0       0      15        0.0%
+BITBANK4           100      0       0      12        0.0%
+BANK4              100      0       0      13        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK0            A0      0       0       4        0.0%
+BANK0               A0      0       0       5        0.0%
+BITCOMRAM           5F      0       0       0        0.0%
+COMRAM              5F      8       C       1       12.6%
+BITBIGSFRhhh        2C      0       0      20        0.0%
+BITBIGSFRhhll       29      0       0      22        0.0%
+BITBIGSFRlll        20      0       0      28        0.0%
+BITBIGSFRhhlhh       E      0       0      21        0.0%
+BITBIGSFRllhh        4      0       0      26        0.0%
+BITBIGSFRlhh         4      0       0      24        0.0%
+BITBIGSFRllhl        3      0       0      27        0.0%
+BITBIGSFRlhl         3      0       0      25        0.0%
+BITBIGSFRhl          3      0       0      23        0.0%
+BIGSFR               0      0       0     200        0.0%
+BITSFR               0      0       0     200        0.0%
+SFR                  0      0       0     200        0.0%
+STACK                0      0       0       2        0.0%
+NULL                 0      0       0       0        0.0%
+ABS                  0      0       C      29        0.0%
+DATA                 0      0       C       3        0.0%
+CODE                 0      0       0       0        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V2.36 build 20220127204148 
+Symbol Table                                                                                   Sat Oct 15 18:46:59 2022
+
+                                l9 7EB4                                 l43 7F1A  
+                               l60 7FFE                                 l46 7F3A  
+                               l55 7FF6                                 l49 7F50  
+                               l58 7FFC                                 l75 7EE6  
+                               l84 7F68                                 l78 7EA4  
+                               l87 7F94                                 u50 7F50  
+                               u51 7F4C                                 u60 7F76  
+                               u61 7F72                                 u70 7FD2  
+                               u71 7FCC                                 u80 7FF6  
+                               u81 7FF2                                 u76 7FD4  
+                               u97 7F2E                                l801 7F0A  
+                              l803 7F0E                                l821 7F36  
+                              l805 7F12                                l831 7F8C  
+                              l823 7F54                                l825 7F54  
+                              l817 7F1C                                l841 7EB0  
+                              l827 7F66                                l819 7F28  
+                              l835 7F96                                l763 7EA2  
+                              l771 7ED2                                l829 7F76  
+                              l837 7FC2                                l773 7EDA  
+                              l765 7EC2                                l839 7FE4  
+                              l775 7EE2                                l767 7EC6  
+                              l769 7ED0                                l795 7EE8  
+                              l797 7F00                                l799 7F06  
+                              wreg 000FE8                               _LATA 000F89  
+                             _LATE 000F8D                    __end_of_IO_Task 8000  
+                             _main 7EB0                               start 0000  
+                     ___param_bank 000000                              ?_main 0001  
+                            _PORTA 000F80                              _PORTE 000F84  
+                            _TRISA 000F92                              _TRISE 000F96  
+        ??_ADC_GetSingleConversion 0003                   ??_MCU_Initialize 0002  
+                __end_of_ADC_Start 7EA6                              status 000FD8  
+                 __end_of_Delay_ms 7F52                    __initialization 7EA6  
+                     __end_of_main 7EC0                             ??_main 0009  
+                    __activetblptr 000000                          ??_IO_Task 0008  
+                           _ADRESH 000FC4                             _ADRESL 000FC3  
+                           _OSCCON 000FD3                             isa$std 000001  
+                       __accesstop 0060            __end_of__initialization 7EAA  
+                    ___rparam_used 000001                         _adc_Result 0009  
+                   __pcstackCOMRAM 0001                          ?_Delay_ms 0001  
+                       __pnvCOMRAM 0009                         ??_Delay_ms 0003  
+                          _IO_Task 7F96                          _ADC_Start 7EA2  
+                          __Hparam 0000                            __Lparam 0000  
+                          __pcinit 7EA6                            __ramtop 0800  
+                          __ptext0 7EB0                            __ptext1 7EE8  
+                          __ptext2 7EC0                            __ptext3 7EA2  
+                          __ptext4 7F96                            __ptext5 7F1C  
+                          __ptext6 7F52               end_of_initialization 7EAA  
+                        Delay_ms@j 0004                         ?_ADC_Start 0001  
+         ?_ADC_GetSingleConversion 0001                       _BUTON_Status 000C  
+ADC_GetSingleConversion@RESULT_ADC 0006                     _ADC_Initialize 7EC0  
+              start_initialization 7EA6                        ??_ADC_Start 0001  
+  __end_of_ADC_GetSingleConversion 7F96             __end_of_ADC_Initialize 7EE8  
+                      __pbssCOMRAM 000B                           ?_IO_Task 0001  
+                  ?_ADC_Initialize 0001     ADC_GetSingleConversion@Channel 0005  
+                   _MCU_Initialize 7EE8                           _LATEbits 000F8D  
+                       _ADCON0bits 000FC2                         _ADCON1bits 000FC1  
+                       _ADCON2bits 000FC0                Delay_ms@miliseconds 0001  
+                      _BUTON_Ticks 000B                           _Delay_ms 7F1C  
+           __end_of_MCU_Initialize 7F1C                           __Hrparam 0000  
+                         __Lrparam 0000                    ?_MCU_Initialize 0001  
+                         isa$xinst 000000           ADC_Initialize@PortConfig 0001  
+                 ??_ADC_Initialize 0001            _ADC_GetSingleConversion 7F52  
